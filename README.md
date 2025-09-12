@@ -1,40 +1,11 @@
-####################################################################################
-#                                                                                  #
-#   ██████╗ ███████╗████████╗    ███████╗██╗    ██╗██╗███████╗████████╗██╗   ██╗ #
-#  ██╔════╝ ██╔════╝╚══██╔══╝    ██╔════╝██║    ██║██║██╔════╝╚══██╔══╝╚██╗ ██╔╝ #
-#  ██║  ███╗█████╗     ██║       ███████╗██║ █╗ ██║██║█████╗     ██║     ╚████╔╝  #
-#  ██║   ██║██╔══╝     ██║       ╚════██║██║███╗██║██║██╔══╝     ██║      ╚██╔╝   #
-#  ╚██████╔╝███████╗   ██║       ███████║╚███╔███╔╝██║██╗        ██║       ██║    #
-#   ╚═════╝ ╚══════╝   ╚═╝       ╚══════╝ ╚══╝╚══╝ ╚═╝╚═╝        ╚═╝       ╚═╝    #
-#                                                                                  #
-####################################################################################
-#
-# Project Name: Unified AI Hub
-#
-# Author: @spacewelder314
-#
-# Date Created: 2025-08-22
-#
-# Last Modified: 2025-09-01
-#
-# Version: 1.0.0
-#
-# Description: Unified interface for multiple AI assistants (Claude, Grok, Gemini, 
-#              ChatGPT) in a single Electron window with flexible layouts
-#
-# Language/Framework: JavaScript/Electron
-#
-# Usage: npm start (development) or run the compiled app from dist/
-#
-# Dependencies: electron@^27.3.11, electron-builder@^24.13.3
-#
-# GitHub: https://github.com/spacewelder314/UnifiedAI
-#
-# Notes: Multi-AI interface with layout switching and persistent sessions
-#
-####################################################################################
+# UnifiedAI Hub
 
-# Unified AI Wrapper
+> Unified interface for multiple AI assistants (Claude, Grok, Gemini, ChatGPT) in a single Electron window
+
+![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+![Electron](https://img.shields.io/badge/electron-27.3+-blue.svg)
+![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey.svg)
 
 A powerful Electron-based application that provides a unified interface for multiple AI assistants in a single window.
 
