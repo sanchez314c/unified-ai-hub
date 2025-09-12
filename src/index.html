@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Unified AI Control Bar</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 40px;
+            background: linear-gradient(90deg, #1a1a2e, #16213e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            -webkit-app-region: drag;
+            user-select: none;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 10px;
+            -webkit-app-region: no-drag;
+        }
+        
+        button {
+            padding: 5px 15px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.2s;
+        }
+        
+        button:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-1px);
+        }
+        
+        .title {
+            position: absolute;
+            left: 80px;
+            color: white;
+            font-size: 13px;
+            font-weight: 500;
+            opacity: 0.8;
+        }
+        
+        .status {
+            position: absolute;
+            right: 20px;
+            color: white;
+            font-size: 11px;
+            opacity: 0.6;
+        }
+
+        .config-panel {
+            position: absolute;
+            top: 40px;
+            left: 0;
+            right: 0;
+            background: rgba(0, 20, 40, 0.98);
+            border-top: 3px solid #007bff;
+            padding: 15px;
+            z-index: 1000;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .config-header {
+            color: #007bff;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-align: center;
+            position: relative;
+        }
+
+
+
+        .config-instructions {
+            color: white;
+            font-size: 11px;
+            margin-bottom: 10px;
+            text-align: center;
+            opacity: 0.9;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff6b35;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .close-button:hover {
+            background: #e55a2b;
+        }
+
+        .config-slots {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .config-slot {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .config-slot label {
+            color: white;
+            font-size: 11px;
+            opacity: 0.8;
+        }
+
+        .config-slot select {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            border-radius: 3px;
+            padding: 2px 6px;
+            font-size: 11px;
+            min-width: 100px;
+        }
+
+        .config-slot select:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="title">Unified AI - Single Window</div>
+    <div class="controls">
+        <button onclick="sendLayout('horizontal')">⬌ 3 Columns</button>
+        <button onclick="sendLayout('vertical')">☰ 3 Stacked</button>
+        <button onclick="sendLayout('grid')">⊞ 2x2 Grid</button>
+        <button onclick="sendLayout('four-column')">▭ 4 Columns</button>
+        <button onclick="restoreLayout()">↺ Restore</button>
+        <button onclick="toggleConfigPanel()">🎯 SELECT MODELS</button>
+    </div>
+    <div id="configPanel" class="config-panel" style="display: none;">
+        <div class="config-header">🎯 SELECT WHICH LLMs APPEAR IN EACH WINDOW POSITION</div>
+        <div class="config-instructions">Choose which AI models you want in positions 1-4. These will be used in the different layouts.</div>
+        <div class="config-slots">
+            <div class="config-slot">
+                <label>Position 1:</label>
+                <select id="slot0" onchange="updateActiveLLM(0, this.value)"></select>
+            </div>
+            <div class="config-slot">
+                <label>Position 2:</label>
+                <select id="slot1" onchange="updateActiveLLM(1, this.value)"></select>
+            </div>
+            <div class="config-slot">
+                <label>Position 3:</label>
+                <select id="slot2" onchange="updateActiveLLM(2, this.value)"></select>
+            </div>
+            <div class="config-slot">
+                <label>Position 4:</label>
+                <select id="slot3" onchange="updateActiveLLM(3, this.value)"></select>
+            </div>
+        </div>
+    </div>
+    <div class="status">Cmd+1/2/3/4 to switch layouts | Maximize: Cmd+Shift+Letter</div>
+    
+    <script>
+        let availableLLMs = [];
+        let activeLLMs = [];
+
+        async function initConfig() {
+            availableLLMs = await window.electronAPI.getAvailableLLMs();
+            activeLLMs = await window.electronAPI.getActiveLLMs();
+            populateConfigSlots();
+        }
+
+        function populateConfigSlots() {
+            for (let i = 0; i < 4; i++) {
+                const select = document.getElementById(`slot${i}`);
+                select.innerHTML = '';
+
+                availableLLMs.forEach(llm => {
+                    const option = document.createElement('option');
+                    option.value = llm.key;
+                    option.textContent = llm.name;
+                    if (activeLLMs[i] === llm.key) {
+                        option.selected = true;
+                    }
+                    select.appendChild(option);
+                });
+            }
+        }
+
+        function sendLayout(layout) {
+            window.electronAPI.changeLayout(layout);
+        }
+
+        function restoreLayout() {
+            window.electronAPI.restoreLayout();
+        }
+
+        function toggleConfigPanel() {
+            const panel = document.getElementById('configPanel');
+            if (!panel) {
+                console.error('Config panel not found!');
+                return;
+            }
+
+            if (panel.style.display === 'none' || panel.style.display === '') {
+                // Show panel and adjust browser views
+                panel.style.display = 'block';
+                window.electronAPI.showConfigPanel();
+                initConfig();
+            } else {
+                // Hide panel and restore browser views
+                panel.style.display = 'none';
+                window.electronAPI.hideConfigPanel();
+            }
+        }
+
+        function updateActiveLLM(position, llmKey) {
+            window.electronAPI.setActiveLLM(position, llmKey);
+            activeLLMs[position] = llmKey;
+        }
+
+        // Initialize on load
+        window.addEventListener('DOMContentLoaded', initConfig);
+    </script>
+</body>
+</html>

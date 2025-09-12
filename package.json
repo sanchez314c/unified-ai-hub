@@ -1,0 +1,197 @@
+{
+  "name": "unified-ai-wrapper",
+  "version": "1.0.0",
+  "description": "Single window with all three AIs",
+  "main": "src/main.js",
+  "author": {
+    "name": "Unified AI Wrapper",
+    "email": "contact@unified-ai.app"
+  },
+  "homepage": "https://github.com/unified-ai/wrapper",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --mac --win --linux",
+    "dist:current": "electron-builder",
+    "dist:mac": "electron-builder --mac",
+    "dist:win": "electron-builder --win",
+    "dist:win:msi": "electron-builder --win --config.win.target=msi",
+    "dist:linux": "electron-builder --linux",
+    "pack": "electron-builder --dir",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "build": {
+    "appId": "com.unifiedai.wrapper",
+    "productName": "Unified AI Hub",
+    "copyright": "Copyright © 2024 ${author}",
+    "directories": {
+      "output": "dist",
+      "buildResources": "resources"
+    },
+    "publish": null,
+    "files": [
+      "**/*",
+      "!**/*.ts",
+      "!*.code-workspace",
+      "!LICENSE.md",
+      "!package-lock.json",
+      "!yarn.lock",
+      "!pnpm-lock.yaml",
+      "!.git",
+      "!.vscode",
+      "!node_modules/.cache",
+      "!dist",
+      "!*.py",
+      "!run-*.sh",
+      "!compile-*.sh"
+    ],
+    "mac": {
+      "category": "public.app-category.productivity",
+      "icon": "resources/icons/icon.icns",
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
+      "entitlements": "resources/entitlements.mac.plist",
+      "entitlementsInherit": "resources/entitlements.mac.plist",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ]
+    },
+    "dmg": {
+      "contents": [
+        {
+          "x": 410,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        },
+        {
+          "x": 130,
+          "y": 150,
+          "type": "file"
+        }
+      ]
+    },
+    "win": {
+      "icon": "resources/icons/icon.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "installerIcon": "resources/icons/icon.ico",
+      "uninstallerIcon": "resources/icons/icon.ico",
+      "installerHeaderIcon": "resources/icons/icon.ico",
+      "allowToChangeInstallationDirectory": true,
+      "perMachine": false,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Unified AI Hub"
+    },
+    "msi": {
+      "oneClick": false,
+      "perMachine": false,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "upgradeCode": "A1B2C3D4-E5F6-7890-ABCD-EF1234567890"
+    },
+    "linux": {
+      "icon": "resources/icons",
+      "category": "Utility",
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "deb",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "rpm",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "snap",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "desktop": {
+        "StartupNotify": "true",
+        "Encoding": "UTF-8",
+        "Icon": "unified-ai-wrapper",
+        "Type": "Application",
+        "Categories": "Utility;"
+      }
+    },
+    "deb": {
+      "depends": [
+        "libgtk-3-0",
+        "libnotify4",
+        "libnss3",
+        "libxss1",
+        "libxtst6",
+        "xdg-utils",
+        "libatspi2.0-0",
+        "libuuid1",
+        "libsecret-1-0"
+      ]
+    },
+    "rpm": {
+      "depends": [
+        "gtk3",
+        "libnotify",
+        "nss",
+        "libXScrnSaver",
+        "libXtst",
+        "xdg-utils",
+        "at-spi2-core",
+        "libuuid",
+        "libsecret"
+      ]
+    },
+    "snap": {
+      "grade": "stable",
+      "summary": "Access Claude, Grok, and Gemini in one window"
+    },
+    "appImage": {
+      "license": "LICENSE"
+    }
+  },
+  "devDependencies": {
+    "electron": "^27.3.11",
+    "electron-builder": "^24.13.3"
+  }
+}
