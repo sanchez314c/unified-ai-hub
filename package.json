@@ -26,7 +26,7 @@
     "copyright": "Copyright © 2024 ${author}",
     "directories": {
       "output": "dist",
-      "buildResources": "resources"
+      "buildResources": "build_resources"
     },
     "publish": null,
     "files": [
@@ -47,7 +47,7 @@
     ],
     "mac": {
       "category": "public.app-category.productivity",
-      "icon": "resources/icons/icon.icns",
+      "icon": "build_resources/icons/icon.icns",
       "hardenedRuntime": true,
       "gatekeeperAssess": false,
       "entitlements": "resources/entitlements.mac.plist",
@@ -85,7 +85,7 @@
       ]
     },
     "win": {
-      "icon": "resources/icons/icon.ico",
+      "icon": "build_resources/icons/icon.ico",
       "target": [
         {
           "target": "nsis",
@@ -103,9 +103,9 @@
     },
     "nsis": {
       "oneClick": false,
-      "installerIcon": "resources/icons/icon.ico",
-      "uninstallerIcon": "resources/icons/icon.ico",
-      "installerHeaderIcon": "resources/icons/icon.ico",
+      "installerIcon": "build_resources/icons/icon.ico",
+      "uninstallerIcon": "build_resources/icons/icon.ico",
+      "installerHeaderIcon": "build_resources/icons/icon.ico",
       "allowToChangeInstallationDirectory": true,
       "perMachine": false,
       "createDesktopShortcut": true,
@@ -120,7 +120,7 @@
       "upgradeCode": "A1B2C3D4-E5F6-7890-ABCD-EF1234567890"
     },
     "linux": {
-      "icon": "resources/icons",
+      "icon": "build_resources/icons",
       "category": "Utility",
       "target": [
         {

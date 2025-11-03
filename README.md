@@ -1,149 +1,408 @@
-# UnifiedAI Hub
+# Unified AI Hub 🤖
 
-> Unified interface for multiple AI assistants (Claude, Grok, Gemini, ChatGPT) in a single Electron window
+> Universal AI Assistant Interface - Access Claude, Grok, Gemini, and ChatGPT in one powerful window
 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
-![Electron](https://img.shields.io/badge/electron-27.3+-blue.svg)
-![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey.svg)
 
-A powerful Electron-based application that provides a unified interface for multiple AI assistants in a single window.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Electron](https://img.shields.io/badge/Electron-27.3+-47848F?logo=electron)](https://www.electronjs.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-14%2B-339933?logo=node.js)](https://nodejs.org/)
+[![Platform](https://img.shields.io/badge/Platform-macOS%20|%20Windows%20|%20Linux-lightgrey)](https://github.com/sanchez314c/unified-ai-hub/releases)
 
-## Features
+## 📸 Main Interface
 
-- **Multi-AI Support**: Access Claude, Grok, Gemini, and ChatGPT simultaneously
-- **Flexible Layouts**: 
-  - Horizontal split (3 AIs side-by-side)
-  - Vertical stack (3 AIs stacked)
-  - Grid view (2x2 with 4 AIs)
-  - Focus mode (one AI primary, others minimized)
-- **Custom Scrollbars**: Elegant, dark-theme optimized scrollbars
-- **Context Menu Support**: Full copy/paste functionality with force paste option
-- **Keyboard Shortcuts**: Quick layout switching and navigation
-- **Persistent Sessions**: Maintains separate sessions for each AI
+![Unified AI Hub Screenshot](build_resources/screenshots/unified-ai-interface-00.png)
 
-## Installation
+> The Ultimate AI Assistant Hub - Switch Between Multiple AI Assistants Instantly
 
-### Prerequisites
+Unified AI Hub is a powerful desktop application that brings together multiple AI assistants in a single, unified interface. Built with Electron, it provides a seamless dark UI for accessing Claude, Grok, Gemini, and ChatGPT simultaneously, allowing you to compare responses, switch between services instantly, and manage multiple AI conversations efficiently.
 
-- Node.js (v14 or higher)
-- npm or yarn
+## ✨ Features
 
-### Setup
+- 🤖 **Multi-AI Support** - Access Claude, Grok, Gemini, and ChatGPT simultaneously
+- 📐 **Flexible Layouts** - Horizontal split, vertical stack, grid view, and focus mode
+- 🔄 **Hot-Switching** - Instantly switch between AI assistants without reloading
+- 🎨 **Beautiful Dark UI** - Modern, professional interface optimized for extended use
+- ⌨️ **Keyboard Shortcuts** - Full keyboard navigation and quick layout switching
+- 💾 **Persistent Sessions** - Maintains separate sessions for each AI assistant
+- 🖥️ **Cross-Platform** - Works seamlessly on macOS, Windows, and Linux
+- 🔒 **Secure Architecture** - Isolated BrowserViews with enhanced security
+- 📋 **Smart Copy/Paste** - Enhanced clipboard management with force paste
+- 🌐 **Independent Sessions** - Each AI maintains its own context and cookies
+- 🎯 **Focus Mode** - Dedicate full screen to one AI while keeping others accessible
 
-1. Clone the repository:
+## 🚀 Quick Start - One-Command Build & Run
+
+### Option 1: One-Command Solution (Recommended)
+
 ```bash
-git clone https://github.com/yourusername/unified-ai-wrapper.git
-cd unified-ai-wrapper
-```
+# Clone and build
+git clone https://github.com/sanchez314c/unified-ai-hub.git
+cd unified-ai-hub
 
-2. Install dependencies:
-```bash
-npm install
-```
-
-3. Run the application:
-```bash
+# Build and run with a single command!
+npm run build
 npm start
 ```
 
-## Building
-
-### Build for all platforms:
-```bash
-npm run build
-```
-
-### Platform-specific builds:
-```bash
-npm run build:mac    # macOS
-npm run build:win    # Windows
-npm run build:linux  # Linux
-```
-
-## Usage
-
-### Keyboard Shortcuts
-
-- `Cmd/Ctrl + 1`: Horizontal layout
-- `Cmd/Ctrl + 2`: Vertical layout
-- `Cmd/Ctrl + 3`: Grid layout (4 AIs)
-- `Cmd/Ctrl + 4`: Focus Claude
-- `Cmd/Ctrl + 5`: Focus Grok
-- `Cmd/Ctrl + 6`: Focus Gemini
-- `Cmd/Ctrl + R`: Reload all views
-- `Cmd/Ctrl + Shift + V`: Force paste
-- `F11`: Toggle fullscreen
-
-### Layout Options
-
-The application supports multiple layout configurations:
-
-1. **Horizontal Layout**: Three AI assistants side-by-side
-2. **Vertical Layout**: Three AI assistants stacked vertically
-3. **Grid Layout**: Four AI assistants in a 2x2 grid
-4. **Focus Mode**: One AI takes primary view with others minimized
-
-## Project Structure
-
-```
-unified-ai-wrapper/
-├── src/                    # Source files
-│   ├── main.js            # Main process
-│   ├── preload.js         # Preload script
-│   └── index.html         # Renderer HTML
-├── scripts/               # Build and utility scripts
-├── build-resources/       # Build assets
-│   ├── icons/            # Application icons
-│   └── entitlements.mac.plist
-├── archive/              # Archived/legacy files
-├── docs/                 # Documentation
-├── package.json          # Project configuration
-└── README.md            # This file
-```
-
-## Development
-
-### Running in Development Mode
+### Option 2: Development Mode
 
 ```bash
+# Run in development mode with hot reload
 npm run dev
 ```
 
-### Testing
+### Build Options
 
 ```bash
-npm test
+# Build only (don't launch)
+npm run build
+
+# Build for specific platform
+npm run build:mac        # Build for macOS
+npm run build:win        # Build for Windows
+npm run build:linux      # Build for Linux
+
+# Build for all platforms
+npm run build:all
 ```
 
-## Configuration
+## 📸 Layout Showcase
 
-The application uses separate persistent partitions for each AI service to maintain independent sessions. Configuration can be modified in `main.js`.
+![Multi-AI Layout](build_resources/screenshots/unified-ai-interface-01.png)
+*Multiple AI assistants displayed simultaneously in flexible layouts*
 
-## Security
+## 📋 Prerequisites
 
-- Each AI service runs in an isolated BrowserView with its own partition
-- Context isolation is enabled
-- Web security is enforced
-- No node integration in renderers
+For running from source:
+- **Node.js** 14+ and npm
+- **Git** (for cloning the repository)
 
-## Contributing
+The application includes all necessary dependencies for basic functionality.
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+## 🛠️ Installation
 
-## License
+### Detailed Installation
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+```bash
+# Clone the repository
+git clone https://github.com/sanchez314c/unified-ai-hub.git
+cd unified-ai-hub
 
-## Acknowledgments
+# Install dependencies
+npm install
 
-- Built with [Electron](https://www.electronjs.org/)
-- AI services provided by respective companies (Anthropic, xAI, Google, OpenAI)
+# Start the application
+npm start
 
-## Support
+# Or run in development mode
+npm run dev
+```
 
-For issues, questions, or suggestions, please open an issue on GitHub.
+### Building from Source
+
+```bash
+# One-command build for current platform
+npm run build
+
+# Build for all platforms
+npm run build:all
+
+# Build for specific platforms
+npm run build:mac
+npm run build:win
+npm run build:linux
+```
+
+### Build Output Locations
+
+After building, find your executables in:
+- **macOS**: `dist/Unified AI Hub-*.dmg` and `dist/mac*/Unified AI Hub.app`
+- **Windows**: `dist/Unified AI Hub Setup *.exe`
+- **Linux**: `dist/Unified AI Hub-*.AppImage` and `dist/*.deb`
+
+## 📖 Usage
+
+### 1. Starting the Application
+
+- **Pre-built Binary**: Just double-click the application
+- **From Source**: Run `npm start` or `npm run dev`
+
+### 2. AI Assistant Access
+
+The app provides access to multiple AI assistants:
+- **Claude**: Anthropic's advanced conversational AI
+- **Grok**: xAI's real-time knowledge assistant
+- **Gemini**: Google's multimodal AI assistant
+- **ChatGPT**: OpenAI's versatile conversational model
+
+Navigate to any AI assistant and start your conversation immediately.
+
+### 3. Layout Management
+
+## 📸 Layout Configuration
+
+![Layout Configuration](build_resources/screenshots/unified-ai-interface-02.png)
+*Flexible layout options for different workflows and preferences*
+
+**Layout options:**
+- **Horizontal Layout**: Three AI assistants side-by-side
+- **Vertical Layout**: Three AI assistants stacked vertically
+- **Grid Layout**: Four AI assistants in a 2x2 grid
+- **Focus Mode**: One AI takes primary view with others minimized
+
+### 4. Session Management
+
+**Session features:**
+- **Independent Sessions**: Each AI maintains separate context
+- **Persistent Storage**: Conversations are saved per AI
+- **Quick Switching**: Instant context switching between AIs
+- **Isolated Cookies**: Each AI has its own cookie storage
+
+## 🔧 Configuration
+
+### Directory Structure
+
+```
+~/Library/Application Support/Unified AI Hub/    # macOS
+%APPDATA%/Unified AI Hub/                        # Windows
+~/.config/Unified AI Hub/                        # Linux
+├── sessions/                    # AI session data
+├── preferences.json            # User settings
+├── layouts/                     # Custom layouts
+└── logs/                       # Application logs
+```
+
+### Environment Variables
+
+```bash
+# Set custom configuration directory
+export UNIFIED_AI_HUB_CONFIG_DIR=/path/to/config
+
+# Enable debug mode
+export UNIFIED_AI_HUB_DEBUG=1
+
+# Set custom user agent
+export UNIFIED_AI_HUB_USER_AGENT="Custom-Agent/1.0"
+```
+
+### Keyboard Shortcuts
+
+| Shortcut | Action |
+|----------|--------|
+| `Cmd/Ctrl + 1` | Horizontal layout |
+| `Cmd/Ctrl + 2` | Vertical layout |
+| `Cmd/Ctrl + 3` | Grid layout (4 AIs) |
+| `Cmd/Ctrl + 4` | Focus Claude |
+| `Cmd/Ctrl + 5` | Focus Grok |
+| `Cmd/Ctrl + 6` | Focus Gemini |
+| `Cmd/Ctrl + 7` | Focus ChatGPT |
+| `Cmd/Ctrl + R` | Reload all views |
+| `Cmd/Ctrl + Shift + V` | Force paste |
+| `F11` | Toggle fullscreen |
+
+## 📸 Settings & Preferences
+
+![Settings Interface](build_resources/screenshots/unified-ai-interface-03.png)
+*Comprehensive settings panel for customization and AI preferences*
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+<details>
+<summary>AI assistants not loading</summary>
+
+- **Network Connection**: Check internet connectivity
+- **Authentication**: Verify you're logged into each AI service
+- **Browser Profiles**: Clear individual AI browser data
+- **Firewall**: Ensure HTTPS (port 443) is open
+- **Service Status**: Check if AI services are operational
+</details>
+
+<details>
+<summary>Performance issues</summary>
+
+- **Memory Usage**: Close unused AI tabs or restart application
+- **GPU Acceleration**: Enable hardware acceleration in settings
+- **Session Cleanup**: Clear session data for problematic AIs
+- **Background Processes**: Close other resource-intensive applications
+</details>
+
+<details>
+<summary>Copypaste not working</summary>
+
+- **Clipboard Access**: Ensure app has clipboard permissions
+- **Force Paste**: Use `Cmd/Ctrl + Shift + V` for force paste
+- **Browser Security**: Some sites block clipboard access
+- **Context Menu**: Right-click for copy/paste options
+</details>
+
+<details>
+<summary>Application crashes</summary>
+
+1. Check system logs for error details
+2. Update to latest Electron version
+3. Clear application cache
+4. Reset to default settings
+5. Restart application
+</details>
+
+## 📁 Project Structure
+
+```
+unified-ai-hub/
+├── src/                      # Source code
+│   ├── main/                # Electron main process
+│   │   ├── index.js         # Main entry point
+│   │   ├── menu.js          # Application menu
+│   │   └── windows/         # Window management
+│   ├── renderer/            # Renderer process
+│   │   ├── components/      # UI components
+│   │   ├── styles/          # CSS and themes
+│   │   └── index.html       # Main HTML
+│   ├── preload/             # Preload scripts
+│   └── shared/              # Shared utilities
+├── build_resources/         # Build resources
+│   ├── icons/              # Application icons
+│   └── screenshots/        # App screenshots
+├── scripts/                # Build and utility scripts
+├── docs/                   # Documentation
+├── tests/                  # Test files
+├── dist/                   # Build outputs
+└── archive/                # Archived files
+```
+
+## 🧪 Testing
+
+```bash
+# Run all tests
+npm test
+
+# Run tests in watch mode
+npm run test:watch
+
+# Run tests with coverage
+npm run test:coverage
+```
+
+## 📦 Build Configuration
+
+The application uses standard Electron build configuration:
+
+### Build Settings
+- **Electron Version**: 27.3+
+- **Node.js Target**: 14+
+- **Platforms**: macOS, Windows, Linux
+- **Compression**: Maximum compression for smaller downloads
+
+### Supported Platforms
+- **macOS**: 10.15+ (Catalina and later)
+- **Windows**: Windows 10+ (x64)
+- **Linux**: Ubuntu 18.04+, Debian 10+, Fedora 32+
+
+## 🔧 Scripts
+
+| Script | Description |
+|--------|-------------|
+| `npm start` | Start application in production mode |
+| `npm run dev` | Development mode with hot reload |
+| `npm run build` | Build application for production |
+| `npm run build:all` | Build for all platforms |
+| `npm run test` | Run test suite |
+| `npm run lint` | Run ESLint |
+
+## 🎨 Design
+
+### UI Components
+
+- **AI Viewport**: Individual browser views for each AI assistant
+- **Layout Manager**: Dynamic layout switching and resizing
+- **Control Panel**: Quick access to settings and layout controls
+- **Session Manager**: Independent session management per AI
+- **Context Menu**: Enhanced clipboard and navigation options
+
+### Design Principles
+
+- **Unified Experience**: Consistent interface across all AI services
+- **Dark Theme**: Easy on the eyes during extended AI interactions
+- **Responsive**: Adapts to different screen sizes and resolutions
+- **Keyboard Accessible**: Full keyboard navigation support
+- **Performance First**: Optimized for smooth AI assistant interactions
+
+## 🔒 Security
+
+### Security Features
+
+- **Isolated BrowserViews**: Each AI runs in separate isolated context
+- **Context Isolation**: Enabled for enhanced security
+- **Web Security**: Enforced for all renderer processes
+- **No Node Integration**: Disabled in renderers for security
+- **Session Isolation**: Independent sessions prevent cross-contamination
+- **Persistent Partitions**: Each AI maintains its own data partition
+
+### Privacy Protection
+
+- **Local Storage**: All session data stored locally
+- **No Data Collection**: Application doesn't collect user data
+- **Encrypted Storage**: Sensitive data encrypted when possible
+- **User Control**: Full control over session data and cookies
+
+## 📸 Security Architecture
+
+![Security Architecture](build_resources/screenshots/unified-ai-interface-04.png)
+*Isolated BrowserViews ensure secure, independent AI sessions*
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit pull requests or create issues for bug reports and feature requests.
+
+### Development Setup
+
+```bash
+# Clone the repo
+git clone https://github.com/sanchez314c/unified-ai-hub.git
+cd unified-ai-hub
+
+# Install dependencies
+npm install
+
+# Run in development mode
+npm run dev
+
+# Run tests
+npm test
+
+# Lint code
+npm run lint
+```
+
+### Code Style
+
+- **JavaScript**: Use modern ES6+ syntax
+- **Electron**: Follow Electron security best practices
+- **HTML5**: Semantic HTML5 structure
+- **CSS3**: Modern CSS with proper organization
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- **Electron** - For making cross-platform development possible
+- **AI Service Providers** - Anthropic (Claude), xAI (Grok), Google (Gemini), OpenAI (ChatGPT)
+- **Open Source Community** - For inspiration and feedback
+- **Security Researchers** - For security best practices and guidance
+
+## 🔗 Links
+
+- [Report Issues](https://github.com/sanchez314c/unified-ai-hub/issues)
+- [Request Features](https://github.com/sanchez314c/unified-ai-hub/issues/new?labels=enhancement)
+- [Discussions](https://github.com/sanchez314c/unified-ai-hub/discussions)
+- [Releases](https://github.com/sanchez314c/unified-ai-hub/releases)
+
+---
+
+**Unified AI Hub v1.0** - Universal AI Assistant Interface
+Made with AI!
